@@ -4,7 +4,7 @@ package tasks.first;
         import java.util.Scanner;
 
 public class PolishCalc {
-    private static Scanner in = new Scanner(System.in);
+    private static final Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -12,14 +12,14 @@ public class PolishCalc {
         String [] strArr = str.split(" ");
         ArrayDeque<Long> stack = new ArrayDeque<>();
 
-        for (int i = 0; i < strArr.length; i++) {
-            if (isNumber(strArr[i])) {
-                stack.push(Long.parseLong(strArr[i]));
+        for (String s : strArr) {
+            if (isNumber(s)) {
+                stack.push(Long.parseLong(s));
             } else {
                 long elem1 = stack.pop();
                 long elem2 = stack.pop();
 
-                switch (strArr[i]) {
+                switch (s) {
                     case "+":
                         stack.push(elem1 + elem2);
                         break;
@@ -30,7 +30,7 @@ public class PolishCalc {
                         stack.push(elem1 * elem2);
                         break;
                     case "/":
-                        stack.push(elem2/elem1);
+                        stack.push(elem2 / elem1);
                         break;
                 }
             }
